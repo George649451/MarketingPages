@@ -197,7 +197,9 @@ function driftPx(){if(curPx!=null){curPx+=(Math.random()-0.5)*(priceReal?0.6:1.2
 /* simulated flow — accrued = exact sum of logged rebates */
 const rowsEl=document.getElementById('rows');
 function addTrade(){if(curPx==null)return;
-  const buy=Math.random()>0.42;const lots=Math.max(0.01,(monthlyLots/380)*(0.4+Math.random()*2.6));const reb=lots*RATE;
+  const buy=Math.random()>0.42;
+  // random per-trade size, independent of the slider — skewed so most fills are small, a few large
+  const lots=+(0.05+Math.pow(Math.random(),2.2)*7).toFixed(2);const reb=lots*RATE;
   accrued+=reb;tradeCount++;
   document.getElementById('acc').textContent='$'+fmt(accrued,2);
   document.getElementById('cnt').textContent=fmt(tradeCount)+' trade'+(tradeCount==1?'':'s');
