@@ -1,0 +1,621 @@
+<!DOCTYPE html><html lang="en"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>WP preview</title><style>* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+body.cxm-master-ib {
+  font-family: -apple-system, BlinkMacSystemFont, "Inter", "Helvetica Neue", Arial, sans-serif;
+  color: #e8ecf4;
+  min-height: 100vh;
+  background: radial-gradient(120% 90% at 50% -15%, #101a12, #0a0e0b 55%, #05070c);
+  -webkit-font-smoothing: antialiased;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 36px 18px;
+}
+body.cxm-master-ib .wrap {
+  width: 100%;
+  max-width: 940px;
+}
+body.cxm-master-ib .top {
+  text-align: center;
+  margin-bottom: 24px;
+}
+body.cxm-master-ib .top .wm {
+  font-size: 12px;
+  letter-spacing: 0.14em;
+  color: #7c8a80;
+  font-weight: 600;
+  text-transform: uppercase;
+}
+body.cxm-master-ib .top .wm b {
+  color: #aed396;
+  font-weight: 700;
+}
+body.cxm-master-ib .top h1 {
+  font-size: clamp(28px, 4.4vw, 40px);
+  font-weight: 700;
+  letter-spacing: -0.02em;
+  margin-top: 12px;
+}
+body.cxm-master-ib .top h1 .g {
+  background: linear-gradient(180deg, #7cb855 0%, #469b4c 100%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+body.cxm-master-ib .top p {
+  color: #7c8a80;
+  margin-top: 9px;
+  font-size: 15px;
+}
+body.cxm-master-ib .cards {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 16px;
+  align-items: start;
+}
+@media (max-width: 720px) {
+  body.cxm-master-ib .cards {
+    grid-template-columns: 1fr;
+  }
+}
+body.cxm-master-ib .card {
+  background: #0f1520;
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 18px;
+  overflow: hidden;
+  box-shadow: 0 24px 70px rgba(0, 0, 0, 0.5);
+}
+body.cxm-master-ib .chd {
+  display: flex;
+  align-items: center;
+  gap: 9px;
+  padding: 11px 16px;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+  background: rgba(255, 255, 255, 0.02);
+}
+body.cxm-master-ib .chd .dot3 {
+  display: flex;
+  gap: 5px;
+}
+body.cxm-master-ib .chd .dot3 i {
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  display: block;
+}
+body.cxm-master-ib .chd .dot3 i:nth-child(1) {
+  background: #ff5f57;
+}
+body.cxm-master-ib .chd .dot3 i:nth-child(2) {
+  background: #febc2e;
+}
+body.cxm-master-ib .chd .dot3 i:nth-child(3) {
+  background: #28c840;
+}
+body.cxm-master-ib .chd .t {
+  font-family: "SF Mono", ui-monospace, "Roboto Mono", Menlo, Consolas, monospace;
+  font-size: 11.5px;
+  color: #7c8a80;
+}
+body.cxm-master-ib .chd .badge {
+  margin-left: auto;
+  font-family: "SF Mono", ui-monospace, "Roboto Mono", Menlo, Consolas, monospace;
+  font-size: 10.5px;
+  color: #7cb855;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+body.cxm-master-ib .chd .badge .d {
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  background: #7cb855;
+  box-shadow: 0 0 8px #7cb855;
+  animation: blink 1.3s infinite;
+}
+body.cxm-master-ib .chd .badge.sim {
+  color: #d6a53a;
+}
+body.cxm-master-ib .chd .badge.sim .d {
+  background: #d6a53a;
+  box-shadow: 0 0 8px #d6a53a;
+}
+body.cxm-master-ib .cbody {
+  padding: 24px 22px;
+}
+body.cxm-master-ib .cbody .k {
+  font-family: "SF Mono", ui-monospace, "Roboto Mono", Menlo, Consolas, monospace;
+  font-size: 11px;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: #7c8a80;
+}
+body.cxm-master-ib .cbody .money {
+  font-family: "SF Mono", ui-monospace, "Roboto Mono", Menlo, Consolas, monospace;
+  font-size: clamp(42px, 7vw, 54px);
+  font-weight: 600;
+  color: #fff;
+  font-variant-numeric: tabular-nums;
+  letter-spacing: -0.02em;
+  margin: 4px 0 2px;
+}
+body.cxm-master-ib .cbody .yr {
+  font-family: "SF Mono", ui-monospace, "Roboto Mono", Menlo, Consolas, monospace;
+  font-size: 13px;
+  color: #7c8a80;
+}
+body.cxm-master-ib .cbody .yr b {
+  color: #aed396;
+}
+body.cxm-master-ib .cbody .ms {
+  font-family: "SF Mono", ui-monospace, "Roboto Mono", Menlo, Consolas, monospace;
+  font-size: 12.5px;
+  color: #aed396;
+  min-height: 16px;
+  margin-top: 10px;
+}
+body.cxm-master-ib .cbody .specs {
+  margin-top: 18px;
+  font-family: "SF Mono", ui-monospace, "Roboto Mono", Menlo, Consolas, monospace;
+  font-size: 11px;
+  color: #7c8a80;
+}
+body.cxm-master-ib .cbody .specs b {
+  color: #e8ecf4;
+}
+body.cxm-master-ib .sw {
+  margin-top: 24px;
+  padding-top: 20px;
+  border-top: 1px solid rgba(255, 255, 255, 0.08);
+}
+body.cxm-master-ib .sw .cl {
+  display: flex;
+  justify-content: space-between;
+  font-family: "SF Mono", ui-monospace, "Roboto Mono", Menlo, Consolas, monospace;
+  font-size: 12px;
+  color: #7c8a80;
+  margin-bottom: 14px;
+}
+body.cxm-master-ib .sw .cl b {
+  color: #fff;
+}
+body.cxm-master-ib input[type=range] {
+  -webkit-appearance: none;
+  appearance: none;
+  width: 100%;
+  height: 5px;
+  border-radius: 5px;
+  background: linear-gradient(90deg, #7cb855 var(--fill, 10%), rgba(255, 255, 255, 0.12) var(--fill, 10%));
+  outline: none;
+  cursor: pointer;
+}
+body.cxm-master-ib input[type=range]::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  width: 24px;
+  height: 24px;
+  border-radius: 50%;
+  background: radial-gradient(circle at 34% 30%, #aed396, #7cb855 68%, #469b4c);
+  border: 2px solid #eaf6e2;
+  box-shadow: 0 4px 16px rgba(70, 155, 76, 0.5);
+}
+body.cxm-master-ib input[type=range]::-moz-range-thumb {
+  width: 24px;
+  height: 24px;
+  border-radius: 50%;
+  background: #7cb855;
+  border: 2px solid #eaf6e2;
+}
+body.cxm-master-ib .ticker {
+  display: flex;
+  align-items: center;
+  gap: 22px;
+  padding: 11px 16px;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+  background: #0c111a;
+  font-family: "SF Mono", ui-monospace, "Roboto Mono", Menlo, Consolas, monospace;
+  font-size: 12px;
+  overflow: hidden;
+  white-space: nowrap;
+}
+body.cxm-master-ib .ticker .tk {
+  display: flex;
+  align-items: center;
+  gap: 7px;
+}
+body.cxm-master-ib .ticker .tk .sym {
+  color: #7c8a80;
+}
+body.cxm-master-ib .ticker .tk .px {
+  font-weight: 600;
+  font-variant-numeric: tabular-nums;
+  transition: color 0.25s;
+}
+body.cxm-master-ib .ticker .tk .chg {
+  font-size: 11px;
+  font-variant-numeric: tabular-nums;
+}
+body.cxm-master-ib .up {
+  color: #7cb855;
+}
+body.cxm-master-ib .down {
+  color: #ff5566;
+}
+body.cxm-master-ib .thead {
+  font-family: "SF Mono", ui-monospace, "Roboto Mono", Menlo, Consolas, monospace;
+  font-size: 10px;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: #7c8a80;
+  display: flex;
+  gap: 12px;
+  padding: 8px 18px;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+}
+body.cxm-master-ib .thead span:nth-child(1) {
+  width: 42px;
+}
+body.cxm-master-ib .thead span:nth-child(2) {
+  width: 74px;
+}
+body.cxm-master-ib .thead span:nth-child(3) {
+  flex: 1;
+}
+body.cxm-master-ib .thead span:nth-child(4) {
+  width: 82px;
+  text-align: right;
+}
+body.cxm-master-ib #rows {
+  min-height: 150px;
+  padding: 4px 0;
+  overflow: hidden;
+}
+body.cxm-master-ib .trow {
+  font-family: "SF Mono", ui-monospace, "Roboto Mono", Menlo, Consolas, monospace;
+  font-size: 12px;
+  padding: 4px 18px;
+  display: flex;
+  gap: 12px;
+  align-items: center;
+  animation: sl 0.3s cubic-bezier(0.22, 1, 0.36, 1);
+}
+body.cxm-master-ib .trow .s {
+  width: 42px;
+  font-weight: 600;
+}
+body.cxm-master-ib .trow .l {
+  width: 74px;
+  color: #7c8a80;
+}
+body.cxm-master-ib .trow .i {
+  flex: 1;
+  color: #7c8a80;
+}
+body.cxm-master-ib .trow .r {
+  width: 82px;
+  text-align: right;
+  color: #7cb855;
+}
+body.cxm-master-ib .accrue {
+  border-top: 1px solid rgba(255, 255, 255, 0.08);
+  background: #0c111a;
+  padding: 15px 18px;
+}
+body.cxm-master-ib .accrue .k {
+  font-family: "SF Mono", ui-monospace, "Roboto Mono", Menlo, Consolas, monospace;
+  font-size: 10px;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  color: #7c8a80;
+  display: flex;
+  justify-content: space-between;
+}
+body.cxm-master-ib .accrue .v {
+  font-family: "SF Mono", ui-monospace, "Roboto Mono", Menlo, Consolas, monospace;
+  font-size: 28px;
+  font-weight: 600;
+  color: #7cb855;
+  font-variant-numeric: tabular-nums;
+  margin-top: 4px;
+}
+body.cxm-master-ib .accrue .sub {
+  font-family: "SF Mono", ui-monospace, "Roboto Mono", Menlo, Consolas, monospace;
+  font-size: 10px;
+  color: #7c8a80;
+  margin-top: 4px;
+}
+body.cxm-master-ib .cta {
+  margin-top: 22px;
+  text-align: center;
+}
+body.cxm-master-ib .cta a {
+  display: inline-flex;
+  align-items: center;
+  gap: 11px;
+  text-decoration: none;
+  background: linear-gradient(180deg, #7cb855 0%, #469b4c 100%);
+  color: #04240c;
+  font-weight: 700;
+  font-size: 16px;
+  padding: 15px 40px;
+  border-radius: 980px;
+  box-shadow: 0 12px 34px rgba(70, 155, 76, 0.38);
+  transition: transform 0.2s, filter 0.2s;
+}
+body.cxm-master-ib .cta a:hover {
+  transform: translateY(-2px);
+  filter: brightness(1.08);
+}
+body.cxm-master-ib .cta a .wa {
+  width: 21px;
+  height: 21px;
+  fill: #04240c;
+  flex: 0 0 auto;
+}
+body.cxm-master-ib .ctasub {
+  font-family: "SF Mono", ui-monospace, "Roboto Mono", Menlo, Consolas, monospace;
+  font-size: 11px;
+  color: #7c8a80;
+  margin-top: 11px;
+}
+body.cxm-master-ib .disc {
+  font-size: 11px;
+  color: #565b70;
+  line-height: 1.6;
+  margin-top: 18px;
+  text-align: center;
+  padding: 0 10px;
+}
+@keyframes blink {
+  50% {
+    opacity: 0.3;
+  }
+}
+@keyframes sl {
+  from {
+    opacity: 0;
+    transform: translateY(-6px);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+</style></head>
+<body class="cxm-master-ib">>
+
+<div class="wrap">
+
+	<div class="top">
+		<div class="wm" id="eyebrow">CXM · Master IB Program</div>
+		<h1 id="headline">Your <span class="g">Gold</span> desk, live.</h1>
+		<p>Set your clients' volume — watch the rebate land in real time.</p>
+	</div>
+
+	<div class="cards">
+
+		<!-- CARD 1 — CALCULATOR -->
+		<div class="card">
+			<div class="chd">
+				<div class="dot3"><i></i><i></i><i></i></div>
+				<span class="t">rebate-calculator</span>
+			</div>
+			<div class="cbody">
+				<div class="k" id="rebLbl">Projected monthly rebate</div>
+				<div class="money" id="usd">$7,200</div>
+				<div class="yr"><b id="yr">$86,400</b> a year</div>
+				<div class="sw">
+					<div class="cl"><span>CLIENT_VOLUME_GOLD</span><b><span id="lots">500</span> lots / month</b></div>
+					<input type="range" id="range" min="10" max="5000" step="10" value="500" aria-label="Monthly gold volume in lots">
+				</div>
+				<div class="specs"><b>$0.24</b> spread · <b>$14.40</b>/lot · <b>60%</b> share · <b>Instant</b> payout</div>
+			</div>
+		</div>
+
+		<!-- CARD 2 — LIVE DESK -->
+		<div class="card">
+			<div class="chd">
+				<div class="dot3"><i></i><i></i><i></i></div>
+				<span class="t">gold-desk · live</span>
+				<span class="badge sim" id="livebadge"><span class="d"></span><span id="livetxt">CONNECTING…</span></span>
+			</div>
+			<div class="ticker">
+				<div class="tk"><span class="sym">XAU/USD</span><span class="px" id="xau">—</span><span class="chg" id="xauchg"></span></div>
+				<div class="tk"><span class="sym">SPREAD</span><span class="px">24 pips</span></div>
+				<div class="tk"><span class="sym">SHARE</span><span class="px up">60%</span></div>
+			</div>
+			<div class="thead"><span>SIDE</span><span>LOTS</span><span>INSTRUMENT</span><span>REBATE</span></div>
+			<div id="rows"></div>
+			<div class="accrue">
+				<div class="k"><span>Rebate accrued this session</span><span class="up" id="cnt">0 trades</span></div>
+				<div class="v" id="acc">$0.00</div>
+				<div class="sub">= sum of every trade above · credited instantly</div>
+			</div>
+		</div>
+
+	</div>
+
+	<div class="cta">
+		<a id="cta" class="js-whatsapp-track" href="https://wa.me/620000000000" target="_blank" rel="noopener">
+			<svg class="wa" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2a10 10 0 0 0-8.6 15.1L2 22l5.1-1.3A10 10 0 1 0 12 2zm5.5 14.1c-.2.7-1.3 1.3-1.9 1.4-.5.1-1.1.1-1.8-.1-.4-.1-1-.3-1.7-.6-3-1.3-4.9-4.3-5.1-4.5-.1-.2-1.2-1.6-1.2-3s.7-2.1 1-2.4c.2-.3.5-.3.7-.3h.5c.2 0 .4 0 .6.5l.8 2c.1.2.1.4 0 .6l-.4.6-.5.5c-.2.2-.3.4-.1.7.2.3.8 1.3 1.7 2.1 1.2 1.1 2.2 1.4 2.5 1.5.3.1.5.1.7-.1l1-1.1c.2-.3.4-.2.7-.1l1.9.9c.3.1.5.2.6.4 0 .1 0 .5-.2 1z"/></svg>
+			Become a Master IB
+		</a>
+		<div class="ctasub">Chat with the Indonesia desk on WhatsApp · replies in minutes</div>
+	</div>
+
+	<div class="disc">XAU/USD is a live market price; client trades are an illustrative simulation. Rebate basis: 60% of spread revenue ($0.24 × 100 oz = $24.00 per 1-lot round turn, Standard account). Final terms per your CXM Master IB agreement. Best Gold Trading Broker 2026 — iFX Expo Dubai. Trading CFDs involves significant risk of loss.</div>
+
+</div>
+
+
+<script>window.CXM_IB={waNumber:"620000000000"};</script>
+<script>/* =====================================================================
+ * CXM Master IB — calculator + live gold desk (presentation only)
+ * No tracking here: tracking lives in the plugin's tracker.js.
+ * Config comes from PHP via wp_localize_script -> window.CXM_IB
+ *   { waNumber: "62..." }   // WhatsApp number, digits only, country code first
+ * URL params:
+ *   ?NAME=  -> personalises copy + pre-filled WhatsApp message
+ *   ?user=  -> read only for the WhatsApp link (tracking is handled separately)
+ * ===================================================================== */
+(function () {
+  'use strict';
+
+  var CFG = window.CXM_IB || {};
+  var WA_NUMBER = String(CFG.waNumber || '620000000000').replace(/[^\d]/g, '');
+  var RATE = 0.24 * 100 * 0.60;                       // $14.40 rebate per lot
+  var fmt = function (n, d) {
+    d = d || 0;
+    return Number(n).toLocaleString('en-US', { minimumFractionDigits: d, maximumFractionDigits: d });
+  };
+
+  var monthlyLots = 500, shownMoney = 7200, rafMoney = null;
+  var accrued = 0, tradeCount = 0, waName = '';
+
+  var $ = function (id) { return document.getElementById(id); };
+
+  /* ---- personalisation via ?NAME= ---- */
+  (function personalise() {
+    var q = new URLSearchParams(location.search);
+    var raw = q.get('NAME') || q.get('name') || '';
+    var nm = raw.replace(/[^\p{L} .'-]/gu, '').trim().slice(0, 40);
+    if (!nm) return;
+    var first = nm.split(/\s+/)[0].replace(/^\p{L}/u, function (c) { return c.toUpperCase(); });
+    waName = first;
+    $('eyebrow').innerHTML = 'Prepared for <b>' + first + '</b> · CXM Master IB';
+    $('headline').innerHTML = first + ', your <span class="g">Gold</span> desk.';
+    $('rebLbl').textContent = first + "'s projected monthly rebate";
+    document.title = 'CXM Master IB — ' + first;
+  })();
+
+  function springMoney(t) {
+    cancelAnimationFrame(rafMoney);
+    var el = $('usd'), from = shownMoney, s = performance.now();
+    (function tick(n) {
+      var p = Math.min(1, (n - s) / 420), e = 1 - Math.pow(1 - p, 3);
+      shownMoney = from + (t - from) * e;
+      el.textContent = '$' + fmt(shownMoney);
+      if (p < 1) rafMoney = requestAnimationFrame(tick); else shownMoney = t;
+    })(s);
+  }
+
+  /* build the WhatsApp deep link with name + current projected figure */
+  function updateCTA(mo) {
+    var who = waName ? ("I'm " + waName + ' — ') : '';
+    var msg = 'Hi CXM, ' + who + "I'd like to open a Master IB account. My projected Gold rebate is ~$" + fmt(mo) + '/month.';
+    var a = $('cta');
+    if (a) a.href = 'https://wa.me/' + WA_NUMBER + '?text=' + encodeURIComponent(msg);
+  }
+
+  function calc() {
+    var r = $('range');
+    monthlyLots = +r.value;
+    r.style.setProperty('--fill', ((monthlyLots - r.min) / (r.max - r.min) * 100) + '%');
+    $('lots').textContent = fmt(monthlyLots);
+    var mo = monthlyLots * RATE, yr = mo * 12;
+    $('yr').textContent = '$' + fmt(yr);
+    springMoney(mo);
+    updateCTA(mo);
+    nextTradeAt = 0;                                   // re-time next fill to the new pace at once
+  }
+  window.cxmCalc = calc;                               // referenced by inline oninput fallback
+
+  /* ---- one-time "drag me" affordance ---- */
+  var demoDone = false;
+  function demoSweep() {
+    var r = $('range');
+    var way = [500, 90, 1600, 500], seg = 620, start = performance.now();
+    (function step(now) {
+      if (demoDone) return;
+      var t = (now - start) / seg;
+      if (t >= way.length - 1) { r.value = way[way.length - 1]; calc(); return; }
+      var i = Math.floor(t), f = t - i;
+      var e = f < .5 ? 2 * f * f : 1 - Math.pow(-2 * f + 2, 2) / 2;
+      r.value = Math.round(way[i] + (way[i + 1] - way[i]) * e);
+      calc();
+      requestAnimationFrame(step);
+    })(start);
+  }
+  ['pointerdown', 'touchstart', 'input', 'keydown'].forEach(function (ev) {
+    $('range').addEventListener(ev, function () { demoDone = true; }, { once: true });
+  });
+  $('range').addEventListener('input', calc);
+
+  /* ---- real gold price ---- */
+  var curPx = null, openPx = null, priceReal = false;
+  function fetchGold() {
+    return fetch('https://api.gold-api.com/price/XAU', { cache: 'no-store' })
+      .then(function (r) { return r.json(); })
+      .then(function (j) { if (j && j.price) return +j.price; throw 0; })
+      .catch(function () {
+        return fetch('https://api.coinbase.com/v2/prices/PAXG-USD/spot', { cache: 'no-store' })
+          .then(function (r) { return r.json(); })
+          .then(function (j) { return (j && j.data && j.data.amount) ? +j.data.amount : null; })
+          .catch(function () { return null; });
+      });
+  }
+  function renderPx() {
+    var el = $('xau'), chg = $('xauchg');
+    if (curPx == null) { el.textContent = '—'; return; }
+    el.textContent = fmt(curPx, 2);
+    var d = curPx - openPx;
+    el.className = 'px ' + (d >= 0 ? 'up' : 'down');
+    chg.className = 'chg ' + (d >= 0 ? 'up' : 'down');
+    chg.textContent = (d >= 0 ? '+' : '') + fmt(d, 2);
+  }
+  function refreshGold() {
+    return fetchGold().then(function (p) {
+      var b = $('livebadge'), t = $('livetxt');
+      if (p) { priceReal = true; curPx = p; if (openPx == null) openPx = p; b.className = 'badge'; t.textContent = 'LIVE'; }
+      else { if (curPx == null) { priceReal = false; curPx = 4000 + Math.random() * 80; openPx = curPx; } b.className = 'badge sim'; t.textContent = 'SIM'; }
+      renderPx();
+    });
+  }
+  function driftPx() { if (curPx != null) { curPx += (Math.random() - 0.5) * (priceReal ? 0.6 : 1.2); renderPx(); } }
+
+  /* ---- simulated flow: random-sized fills, slider sets frequency ---- */
+  var rowsEl = $('rows');
+  function addTrade() {
+    if (curPx == null) return;
+    var buy = Math.random() > 0.42;
+    var lots = +(0.05 + Math.pow(Math.random(), 2.2) * 7).toFixed(2);   // random size, slider-independent
+    var reb = lots * RATE;
+    accrued += reb; tradeCount++;
+    $('acc').textContent = '$' + fmt(accrued, 2);
+    $('cnt').textContent = fmt(tradeCount) + ' trade' + (tradeCount === 1 ? '' : 's');
+    var row = document.createElement('div');
+    row.className = 'trow';
+    row.innerHTML =
+      '<span class="s ' + (buy ? 'up' : 'down') + '">' + (buy ? 'BUY' : 'SELL') + '</span>' +
+      '<span class="l">' + lots.toFixed(2) + ' lot' + (lots < 2 ? '' : 's') + '</span>' +
+      '<span class="i">XAUUSD @ ' + fmt(curPx, 2) + '</span>' +
+      '<span class="r">+$' + reb.toFixed(2) + '</span>';
+    rowsEl.prepend(row);
+    while (rowsEl.children.length > 6) rowsEl.removeChild(rowsEl.lastChild);
+  }
+
+  var nextTradeAt = 0, driftTimer = 0;
+  function scheduleNext(ts) {
+    var f = (monthlyLots - 10) / (5000 - 10);          // 0..1 along the slider
+    var mean = 2400 - f * 2200;                        // ~2.4s between fills (low) -> ~0.2s (high)
+    var gap = -Math.log(1 - Math.random()) * mean;     // exponential = Poisson arrivals
+    nextTradeAt = ts + Math.min(7000, Math.max(90, gap));
+  }
+  function loop(ts) {
+    if (!nextTradeAt) scheduleNext(ts);
+    if (ts >= nextTradeAt) { addTrade(); scheduleNext(ts); }
+    if (ts - driftTimer > 900) { driftTimer = ts; driftPx(); }
+    requestAnimationFrame(loop);
+  }
+
+  calc();
+  refreshGold().then(function () { requestAnimationFrame(loop); });
+  setInterval(refreshGold, 15000);
+  setTimeout(demoSweep, 650);
+})();
+</script></body></html>
