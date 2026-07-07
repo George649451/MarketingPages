@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>CXM Gold Rebate — Bold</title>
+<style>
+  :root{--txt:#ffffff;--muted:#8a90a6;--green:#22ca46;--gold:#f5c542;--ease:cubic-bezier(.22,1,.36,1);}
+  *{box-sizing:border-box;margin:0;padding:0;}
+  body{font-family:"Inter",-apple-system,BlinkMacSystemFont,"Helvetica Neue",Arial,sans-serif;color:var(--txt);
+    min-height:100vh;background:#05060a;-webkit-font-smoothing:antialiased;overflow-x:hidden;position:relative;
+    display:flex;align-items:center;justify-content:center;padding:44px 20px;}
+  /* animated grid + glow */
+  .grid{position:fixed;inset:0;z-index:-2;
+    background-image:linear-gradient(rgba(255,255,255,.04) 1px,transparent 1px),linear-gradient(90deg,rgba(255,255,255,.04) 1px,transparent 1px);
+    background-size:44px 44px;mask-image:radial-gradient(120% 80% at 50% 30%,#000 40%,transparent 80%);
+    -webkit-mask-image:radial-gradient(120% 80% at 50% 30%,#000 40%,transparent 80%);animation:pan 20s linear infinite;}
+  @keyframes pan{to{background-position:44px 44px;}}
+  .wash{position:fixed;z-index:-1;border-radius:50%;filter:blur(110px);opacity:.4;}
+  .w1{width:600px;height:600px;background:#c9992a;top:-220px;left:50%;margin-left:-300px;}
+  .w2{width:460px;height:460px;background:#12a338;bottom:-200px;right:-120px;opacity:.3;}
+
+  .wrap{width:100%;max-width:600px;text-align:center;}
+  .pill{display:inline-flex;align-items:center;gap:8px;font-size:12px;font-weight:700;letter-spacing:.06em;
+    color:var(--gold);background:rgba(245,197,66,.12);border:1px solid rgba(245,197,66,.3);padding:7px 16px;border-radius:999px;text-transform:uppercase;}
+  .pill .dot{width:7px;height:7px;border-radius:50%;background:var(--green);box-shadow:0 0 10px var(--green);animation:blink 1.4s infinite;}
+  @keyframes blink{50%{opacity:.35;}}
+  h1{font-size:clamp(34px,6.5vw,58px);font-weight:800;letter-spacing:-.03em;line-height:1.02;margin:22px 0 8px;}
+  h1 .g{background:linear-gradient(92deg,#ffe27a,var(--gold) 55%,#e0a615);-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent;}
+  .sub{color:var(--muted);font-size:15px;font-weight:500;}
+
+  .card{margin-top:34px;background:linear-gradient(180deg,#101320,#0a0c14);border:1px solid rgba(255,255,255,.09);
+    border-radius:26px;padding:34px 28px;box-shadow:0 30px 80px rgba(0,0,0,.6);position:relative;overflow:hidden;}
+  .card::before{content:"";position:absolute;top:0;left:0;right:0;height:2px;background:linear-gradient(90deg,transparent,var(--gold),transparent);}
+  .lbl{font-size:12px;letter-spacing:.16em;text-transform:uppercase;color:var(--muted);font-weight:700;}
+  .money{font-size:clamp(60px,12vw,104px);font-weight:800;line-height:1;letter-spacing:-.04em;margin:10px 0 4px;font-variant-numeric:tabular-nums;
+    background:linear-gradient(180deg,#fff,#ffe27a);-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent;
+    text-shadow:0 0 50px rgba(245,197,66,.3);}
+  .row2{display:flex;justify-content:center;gap:26px;margin-top:10px;}
+  .row2 .c .n{font-size:22px;font-weight:800;font-variant-numeric:tabular-nums;}
+  .row2 .c .n.green{color:var(--green);} .row2 .c .n.gold{color:var(--gold);}
+  .row2 .c .l{font-size:11px;letter-spacing:.1em;text-transform:uppercase;color:var(--muted);margin-top:3px;}
+  .ms{margin-top:16px;font-size:15px;font-weight:700;min-height:22px;color:var(--gold);}
+
+  .ctrl{margin-top:26px;padding-top:22px;border-top:1px solid rgba(255,255,255,.08);}
+  .cl{display:flex;justify-content:space-between;font-size:13px;color:var(--muted);font-weight:600;margin-bottom:14px;}
+  .cl b{color:#fff;font-variant-numeric:tabular-nums;}
+  input[type=range]{-webkit-appearance:none;appearance:none;width:100%;height:8px;border-radius:8px;
+    background:linear-gradient(90deg,#e0a615,var(--gold) var(--fill,10%),rgba(255,255,255,.1) var(--fill,10%));outline:none;cursor:pointer;}
+  input[type=range]::-webkit-slider-thumb{-webkit-appearance:none;width:30px;height:30px;border-radius:50%;
+    background:radial-gradient(circle at 32% 30%,#fff,var(--gold) 70%);border:3px solid #fff;box-shadow:0 0 0 5px rgba(245,197,66,.18),0 6px 18px rgba(245,197,66,.5);}
+  input[type=range]::-moz-range-thumb{width:30px;height:30px;border-radius:50%;background:var(--gold);border:3px solid #fff;}
+
+  .cta{margin-top:28px;}
+  .cta a{display:block;text-decoration:none;background:linear-gradient(120deg,#4fe873,var(--green) 55%,#12a338);color:#04240c;
+    font-weight:800;font-size:17px;padding:17px;border-radius:16px;letter-spacing:.01em;box-shadow:0 14px 40px rgba(34,202,70,.45);transition:transform .2s,filter .2s;}
+  .cta a:hover{transform:translateY(-2px);filter:brightness(1.08);}
+  .specs{margin-top:18px;display:flex;justify-content:center;gap:10px;flex-wrap:wrap;font-size:12px;color:var(--muted);font-weight:600;}
+  .specs b{color:#fff;} .specs .d{color:rgba(255,255,255,.2);}
+  footer{margin-top:24px;font-size:11px;color:#565b70;line-height:1.6;}
+</style>
+</head>
+<body>
+<div class="grid"></div><div class="wash w1"></div><div class="wash w2"></div>
+
+<div class="wrap">
+  <div class="pill"><span class="dot"></span>Best Gold Broker 2026 · Now in Indonesia</div>
+  <h1>Turn Gold volume into<br><span class="g">instant income.</span></h1>
+  <div class="sub">Master IB · keep 60% of the spread on every lot</div>
+
+  <div class="card">
+    <div class="lbl">Your monthly rebate</div>
+    <div class="money" id="usd">$7,200</div>
+    <div class="row2">
+      <div class="c"><div class="n gold" id="yr">$86,400</div><div class="l">per year</div></div>
+      <div class="c"><div class="n" id="perlot">$14.40</div><div class="l">per lot</div></div>
+      <div class="c"><div class="n green">Instant</div><div class="l">payout</div></div>
+    </div>
+    <div class="ms" id="ms">An iPhone Pro. Every week.</div>
+
+    <div class="ctrl">
+      <div class="cl"><span>GOLD VOLUME</span><b><span id="lots">500</span> lots / mo</b></div>
+      <input type="range" id="range" min="10" max="5000" step="10" value="500" oninput="calc()">
+    </div>
+
+    <div class="cta"><a href="https://secure.cxm.com/guest/registration" target="_blank" rel="noopener">Become a Master IB →</a></div>
+    <div class="specs"><span><b>$0.24</b> spread</span><span class="d">·</span><span><b>60%</b> share</span><span class="d">·</span><span><b>∞</b> sub-IB tiers</span></div>
+  </div>
+  <footer>Estimate: 60% of spread revenue ($0.24 × 100 oz = $24.00 per 1-lot round turn, Standard account). Final terms per your CXM Master IB agreement. Trading CFDs involves significant risk of loss.</footer>
+</div>
+
+<script>
+  const RATE=0.24*100*0.60; let shown=7200,raf=null;
+  const fmt=n=>n.toLocaleString('en-US',{maximumFractionDigits:0});
+  const MS=[[600000,'A Bali villa. Every year.'],[300000,'Toyota Alphard territory. Every year.'],[120000,'A new Fortuner. Every year.'],[50000,'An iPhone Pro. Every week.'],[12000,'Serious side income.'],[0,'']];
+  const msFn=y=>{for(const[t,s]of MS)if(y>=t)return s;return'';};
+  function calc(){const r=document.getElementById('range'),l=+r.value;
+    r.style.setProperty('--fill',((l-r.min)/(r.max-r.min)*100)+'%');
+    document.getElementById('lots').textContent=fmt(l);
+    const mo=l*RATE,yr=mo*12;document.getElementById('yr').textContent='$'+fmt(yr);
+    document.getElementById('ms').textContent=msFn(yr);spring(mo);}
+  function spring(t){cancelAnimationFrame(raf);const el=document.getElementById('usd'),from=shown,s=performance.now();
+    const tick=n=>{const p=Math.min(1,(n-s)/420),e=1-Math.pow(1-p,3);shown=from+(t-from)*e;el.textContent='$'+fmt(shown);if(p<1)raf=requestAnimationFrame(tick);else shown=t;};raf=requestAnimationFrame(tick);}
+  calc();
+</script>
+</body>
+</html>

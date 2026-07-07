@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>CXM Gold Rebate — Terminal</title>
+<style>
+  :root{--bg:#0b0e14;--panel:#111621;--line:rgba(255,255,255,.08);--txt:#e8ecf4;--muted:#7d879c;
+    --green:#22ca46;--gold:#e6c15c;--mono:"SF Mono",ui-monospace,"Roboto Mono",Menlo,Consolas,monospace;--ease:cubic-bezier(.22,1,.36,1);}
+  *{box-sizing:border-box;margin:0;padding:0;}
+  body{font-family:-apple-system,BlinkMacSystemFont,"Inter","Helvetica Neue",Arial,sans-serif;color:var(--txt);
+    min-height:100vh;background:var(--bg);-webkit-font-smoothing:antialiased;display:flex;align-items:center;justify-content:center;padding:40px 20px;}
+  .term{width:100%;max-width:860px;background:var(--panel);border:1px solid var(--line);border-radius:16px;overflow:hidden;
+    box-shadow:0 30px 90px rgba(0,0,0,.55);}
+  .bar{display:flex;align-items:center;gap:10px;padding:12px 16px;border-bottom:1px solid var(--line);background:rgba(255,255,255,.02);}
+  .dots{display:flex;gap:6px;} .dots i{width:11px;height:11px;border-radius:50%;display:block;}
+  .dots i:nth-child(1){background:#ff5f57;}.dots i:nth-child(2){background:#febc2e;}.dots i:nth-child(3){background:#28c840;}
+  .bar .ttl{font-family:var(--mono);font-size:12px;color:var(--muted);margin-left:6px;}
+  .bar .live{margin-left:auto;font-family:var(--mono);font-size:11px;color:var(--green);display:flex;align-items:center;gap:6px;}
+  .bar .live .d{width:7px;height:7px;border-radius:50%;background:var(--green);box-shadow:0 0 8px var(--green);animation:blink 1.4s infinite;}
+  @keyframes blink{50%{opacity:.3;}}
+
+  .body{display:grid;grid-template-columns:1.4fr 1fr;}
+  @media(max-width:680px){.body{grid-template-columns:1fr;}}
+  .left{padding:22px;border-right:1px solid var(--line);}
+  @media(max-width:680px){.left{border-right:none;border-bottom:1px solid var(--line);}}
+  .cap{font-family:var(--mono);font-size:11px;letter-spacing:.08em;text-transform:uppercase;color:var(--muted);}
+  #chart{width:100%;height:220px;display:block;margin-top:10px;}
+  .xlab{display:flex;justify-content:space-between;font-family:var(--mono);font-size:10px;color:var(--muted);margin-top:4px;}
+
+  .right{padding:22px;display:flex;flex-direction:column;gap:16px;}
+  .kpi .k{font-family:var(--mono);font-size:11px;letter-spacing:.06em;text-transform:uppercase;color:var(--muted);}
+  .kpi .v{font-family:var(--mono);font-weight:600;font-variant-numeric:tabular-nums;letter-spacing:-.01em;margin-top:3px;}
+  .kpi.big .v{font-size:40px;color:#fff;}
+  .kpi .v.gold{color:var(--gold);font-size:22px;} .kpi .v.green{color:var(--green);}
+  .kpirow{display:flex;gap:20px;}
+  .ms{font-family:var(--mono);font-size:12.5px;color:var(--gold);min-height:18px;}
+
+  .ctrl{padding:20px 22px;border-top:1px solid var(--line);}
+  .cl{display:flex;justify-content:space-between;font-family:var(--mono);font-size:12px;color:var(--muted);margin-bottom:12px;}
+  .cl b{color:#fff;}
+  input[type=range]{-webkit-appearance:none;appearance:none;width:100%;height:4px;border-radius:4px;
+    background:linear-gradient(90deg,var(--gold) var(--fill,10%),rgba(255,255,255,.12) var(--fill,10%));outline:none;cursor:pointer;}
+  input[type=range]::-webkit-slider-thumb{-webkit-appearance:none;width:22px;height:22px;border-radius:50%;background:var(--gold);border:2px solid #fff;box-shadow:0 3px 12px rgba(230,193,92,.5);}
+  input[type=range]::-moz-range-thumb{width:22px;height:22px;border-radius:50%;background:var(--gold);border:2px solid #fff;}
+
+  .foot{padding:16px 22px;border-top:1px solid var(--line);display:flex;align-items:center;gap:16px;flex-wrap:wrap;}
+  .foot .specs{font-family:var(--mono);font-size:11px;color:var(--muted);}
+  .foot .specs b{color:var(--txt);}
+  .foot a{margin-left:auto;text-decoration:none;background:var(--green);color:#04240c;font-weight:700;font-size:14px;padding:12px 26px;border-radius:10px;transition:filter .2s,transform .2s;}
+  .foot a:hover{filter:brightness(1.08);transform:translateY(-1px);}
+  .disc{max-width:860px;font-size:11px;color:#565b70;line-height:1.6;margin-top:14px;text-align:center;padding:0 12px;}
+</style>
+</head>
+<body>
+<div>
+<div class="term">
+  <div class="bar">
+    <div class="dots"><i></i><i></i><i></i></div>
+    <span class="ttl">cxm://master-ib/gold-rebate</span>
+    <span class="live"><span class="d"></span>LIVE</span>
+  </div>
+
+  <div class="body">
+    <div class="left">
+      <div class="cap">Rebate vs. monthly Gold volume</div>
+      <canvas id="chart"></canvas>
+      <div class="xlab"><span>0</span><span>1,250</span><span>2,500</span><span>3,750</span><span>5,000 lots</span></div>
+    </div>
+    <div class="right">
+      <div class="kpi big"><div class="k">Monthly rebate</div><div class="v" id="usd">$7,200</div></div>
+      <div class="kpirow">
+        <div class="kpi"><div class="k">Annualised</div><div class="v gold" id="yr">$86,400</div></div>
+        <div class="kpi"><div class="k">Per lot</div><div class="v gold" id="perlot">$14.40</div></div>
+      </div>
+      <div class="ms" id="ms">// An iPhone Pro. Every week.</div>
+    </div>
+  </div>
+
+  <div class="ctrl">
+    <div class="cl"><span>CLIENT_VOLUME_GOLD</span><b><span id="lots">500</span> lots/mo</b></div>
+    <input type="range" id="range" min="10" max="5000" step="10" value="500" oninput="calc()">
+  </div>
+
+  <div class="foot">
+    <span class="specs"><b>$0.24</b> spread · <b>60%</b> share · <b>Instant</b> payout · <b>∞</b> sub-IB</span>
+    <a href="https://secure.cxm.com/guest/registration" target="_blank" rel="noopener">Become a Master IB</a>
+  </div>
+</div>
+<div class="disc">Estimate: 60% of spread revenue ($0.24 × 100 oz = $24.00 per 1-lot round turn, Standard account). Final terms per your CXM Master IB agreement. Best Gold Trading Broker 2026 — iFX Expo Dubai. Trading CFDs involves significant risk of loss.</div>
+</div>
+
+<script>
+  const RATE=0.24*100*0.60; let shown=7200,raf=null;
+  const fmt=n=>n.toLocaleString('en-US',{maximumFractionDigits:0});
+  const MS=[[600000,'A Bali villa. Every year.'],[300000,'Toyota Alphard territory. Every year.'],[120000,'A new Fortuner. Every year.'],[50000,'An iPhone Pro. Every week.'],[12000,'Serious side income.'],[0,'']];
+  const msFn=y=>{for(const[t,s]of MS)if(y>=t)return s;return'';};
+  const cv=document.getElementById('chart'),cx=cv.getContext('2d');
+  let W,H,DPR;
+  function resize(){DPR=Math.min(2,devicePixelRatio||1);W=cv.clientWidth;H=cv.clientHeight;cv.width=W*DPR;cv.height=H*DPR;cx.setTransform(DPR,0,0,DPR,0,0);draw();}
+  addEventListener('resize',resize);
+  let curLots=500;
+  function draw(){
+    cx.clearRect(0,0,W,H);const pad=6,maxL=5000,maxV=maxL*RATE;
+    // gridlines
+    cx.strokeStyle='rgba(255,255,255,.06)';cx.lineWidth=1;
+    for(let i=0;i<=4;i++){const y=pad+(H-2*pad)*i/4;cx.beginPath();cx.moveTo(0,y);cx.lineTo(W,y);cx.stroke();}
+    // area path (linear rebate = straight line, but render as filled area)
+    const x=l=>(l/maxL)*W, y=v=>H-pad-(v/maxV)*(H-2*pad);
+    const grad=cx.createLinearGradient(0,0,0,H);
+    grad.addColorStop(0,'rgba(230,193,92,.32)');grad.addColorStop(1,'rgba(230,193,92,0)');
+    cx.beginPath();cx.moveTo(0,y(0));cx.lineTo(x(maxL),y(maxV));cx.lineTo(W,H);cx.lineTo(0,H);cx.closePath();cx.fillStyle=grad;cx.fill();
+    // line
+    cx.beginPath();cx.moveTo(0,y(0));cx.lineTo(x(maxL),y(maxV));cx.strokeStyle='#e6c15c';cx.lineWidth=2;cx.stroke();
+    // marker at current
+    const mx=x(curLots),my=y(curLots*RATE);
+    cx.strokeStyle='rgba(255,255,255,.25)';cx.setLineDash([4,4]);cx.beginPath();cx.moveTo(mx,my);cx.lineTo(mx,H);cx.stroke();cx.setLineDash([]);
+    cx.beginPath();cx.arc(mx,my,6,0,7);cx.fillStyle='#fff';cx.fill();cx.beginPath();cx.arc(mx,my,10,0,7);cx.strokeStyle='rgba(230,193,92,.6)';cx.lineWidth=2;cx.stroke();
+  }
+  function calc(){const r=document.getElementById('range'),l=+r.value;curLots=l;
+    r.style.setProperty('--fill',((l-r.min)/(r.max-r.min)*100)+'%');
+    document.getElementById('lots').textContent=fmt(l);
+    const mo=l*RATE,yr=mo*12;document.getElementById('yr').textContent='$'+fmt(yr);
+    document.getElementById('ms').textContent='// '+msFn(yr);draw();spring(mo);}
+  function spring(t){cancelAnimationFrame(raf);const el=document.getElementById('usd'),from=shown,s=performance.now();
+    const tick=n=>{const p=Math.min(1,(n-s)/420),e=1-Math.pow(1-p,3);shown=from+(t-from)*e;el.textContent='$'+fmt(shown);if(p<1)raf=requestAnimationFrame(tick);else shown=t;};raf=requestAnimationFrame(tick);}
+  resize();calc();
+</script>
+</body>
+</html>
