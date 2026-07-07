@@ -156,6 +156,27 @@ function calc(){const r=document.getElementById('range');monthlyLots=+r.value;
   const mo=monthlyLots*RATE,yr=mo*12;document.getElementById('yr').textContent='$'+fmt(yr);
   springMoney(mo);}
 
+/* ---- one-time "drag me" affordance: sweep the slider on open ---- */
+let demoDone=false;
+function demoSweep(){
+  const r=document.getElementById('range');
+  const way=[500,90,1600,500];               // settle → left → right → home
+  const seg=620;                             // ms per leg
+  const start=performance.now();
+  function step(now){
+    if(demoDone)return;                       // user grabbed it → stop instantly
+    const t=(now-start)/seg;
+    if(t>=way.length-1){r.value=way[way.length-1];calc();return;}
+    const i=Math.floor(t),f=t-i;
+    const e=f<.5?2*f*f:1-Math.pow(-2*f+2,2)/2; // easeInOutQuad
+    r.value=Math.round(way[i]+(way[i+1]-way[i])*e);
+    calc();requestAnimationFrame(step);
+  }
+  requestAnimationFrame(step);
+}
+['pointerdown','touchstart','input','keydown'].forEach(ev=>
+  document.getElementById('range').addEventListener(ev,()=>{demoDone=true;},{once:true}));
+
 /* real gold price */
 let curPx=null,openPx=null,priceReal=false;
 async function fetchGold(){
@@ -198,6 +219,7 @@ function loop(ts){
   if(ts-driftTimer>900){driftTimer=ts;driftPx();}
   requestAnimationFrame(loop);}
 calc();refreshGold().then(()=>requestAnimationFrame(loop));setInterval(refreshGold,15000);
+setTimeout(demoSweep,650);   // let the page settle, then show the slider is draggable
 </script>
 </body>
 </html>
