@@ -154,7 +154,8 @@ function calc(){const r=document.getElementById('range');monthlyLots=+r.value;
   r.style.setProperty('--fill',((monthlyLots-r.min)/(r.max-r.min)*100)+'%');
   document.getElementById('lots').textContent=fmt(monthlyLots);
   const mo=monthlyLots*RATE,yr=mo*12;document.getElementById('yr').textContent='$'+fmt(yr);
-  springMoney(mo);}
+  springMoney(mo);
+  nextTradeAt=0;}   // re-time the next fill to the new pace immediately
 
 /* ---- one-time "drag me" affordance: sweep the slider on open ---- */
 let demoDone=false;
@@ -209,9 +210,10 @@ function addTrade(){if(curPx==null)return;
 
 let nextTradeAt=0,driftTimer=0;
 function scheduleNext(ts){
-  const mean=Math.max(500,1500-monthlyLots/5);        // avg ms between fills — busier as volume rises
+  const f=(monthlyLots-10)/(5000-10);                 // 0 (min) … 1 (max) along the slider
+  const mean=2400-f*2200;                             // ~2.4s between fills at low volume → ~0.2s at high
   const gap=-Math.log(1-Math.random())*mean;          // exponential wait = Poisson arrivals (bursty, irregular)
-  nextTradeAt=ts+Math.min(7000,Math.max(150,gap));    // clamp 0.15s–7s
+  nextTradeAt=ts+Math.min(7000,Math.max(90,gap));     // clamp 0.09s–7s
 }
 function loop(ts){
   if(!nextTradeAt)scheduleNext(ts);
