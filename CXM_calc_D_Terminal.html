@@ -186,9 +186,15 @@ function addTrade(){if(curPx==null)return;
     `<span class="r">+$${reb.toFixed(2)}</span>`;
   rowsEl.prepend(row);while(rowsEl.children.length>6)rowsEl.removeChild(rowsEl.lastChild);}
 
-let tradeTimer=0,driftTimer=0;
-function loop(ts){const gap=Math.max(650,1600-monthlyLots/5);
-  if(ts-tradeTimer>gap){tradeTimer=ts;addTrade();}
+let nextTradeAt=0,driftTimer=0;
+function scheduleNext(ts){
+  const mean=Math.max(500,1500-monthlyLots/5);        // avg ms between fills — busier as volume rises
+  const gap=-Math.log(1-Math.random())*mean;          // exponential wait = Poisson arrivals (bursty, irregular)
+  nextTradeAt=ts+Math.min(7000,Math.max(150,gap));    // clamp 0.15s–7s
+}
+function loop(ts){
+  if(!nextTradeAt)scheduleNext(ts);
+  if(ts>=nextTradeAt){addTrade();scheduleNext(ts);}
   if(ts-driftTimer>900){driftTimer=ts;driftPx();}
   requestAnimationFrame(loop);}
 calc();refreshGold().then(()=>requestAnimationFrame(loop));setInterval(refreshGold,15000);
