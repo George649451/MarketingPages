@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>CXM — Twelve Seats. One Country.</title>
+<meta property="og:title" content="CXM is appointing 12 Master IBs for Indonesia.">
+<meta property="og:description" content="By application only. Invite codes accepted.">
+<style>
+  :root{
+    --bg:#000; --txt:#f5f5f7; --muted:#86868b;
+    --hairline:rgba(255,255,255,.14); --green:#22ca46;
+    --gold-l:#f5cf6b; --gold:#d4a017;
+    --ease:cubic-bezier(.25,.1,.25,1);
+  }
+  *{box-sizing:border-box;margin:0;padding:0;}
+  body{
+    font-family:-apple-system,BlinkMacSystemFont,"SF Pro Display","Helvetica Neue",Helvetica,Arial,sans-serif;
+    background:var(--bg);color:var(--txt);min-height:100vh;
+    display:flex;align-items:center;justify-content:center;padding:60px 24px;
+    -webkit-font-smoothing:antialiased;
+  }
+  .page{width:100%;max-width:560px;text-align:center;}
+  .fade{opacity:0;transform:translateY(14px);animation:in 1s var(--ease) forwards;}
+  .d1{animation-delay:.05s}.d2{animation-delay:.18s}.d3{animation-delay:.32s}
+  .d4{animation-delay:.46s}.d5{animation-delay:.6s}.d6{animation-delay:.74s}
+  @keyframes in{to{opacity:1;transform:none;}}
+
+  .wordmark{font-size:13px;font-weight:600;letter-spacing:.22em;color:var(--muted);margin-bottom:52px;}
+  h1{font-size:clamp(40px,7.5vw,58px);font-weight:700;letter-spacing:-.015em;line-height:1.08;}
+  h1 .gold{
+    background:linear-gradient(92deg,#f7e7b4,#e6c15c 45%,#c99a2e);
+    -webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent;
+  }
+  .sub{font-size:19px;color:var(--muted);line-height:1.5;margin:24px auto 0;max-width:430px;font-weight:400;}
+  .sub b{color:var(--txt);font-weight:500;}
+
+  /* the twelve seats */
+  .seats{
+    display:grid;grid-template-columns:repeat(6,1fr);gap:14px;
+    max-width:420px;margin:70px auto 0;
+  }
+  .seat{
+    aspect-ratio:1;border-radius:16px;position:relative;
+    border:1px solid rgba(255,255,255,.14);
+    display:flex;align-items:center;justify-content:center;
+    font-size:13px;font-weight:600;color:var(--muted);
+    transition:all .3s var(--ease);
+  }
+  .seat.taken{
+    background:linear-gradient(135deg,#f4d878,#d9a93c 55%,#8f6a14);
+    border-color:transparent;color:#3a2a00;
+    box-shadow:0 6px 24px rgba(212,160,23,.28);
+  }
+  .seat.open{cursor:pointer;}
+  .seat.open::after{
+    content:"";position:absolute;inset:-1px;border-radius:16px;
+    border:1px solid rgba(34,202,70,.0);animation:breathe 2.6s var(--ease) infinite;
+  }
+  @keyframes breathe{
+    0%,100%{border-color:rgba(34,202,70,0);box-shadow:0 0 0 rgba(34,202,70,0);}
+    50%{border-color:rgba(34,202,70,.55);box-shadow:0 0 22px rgba(34,202,70,.18);}
+  }
+  .seat.open:hover{transform:scale(1.06);border-color:var(--green);color:var(--txt);}
+  .seats-caption{margin-top:22px;font-size:14px;color:var(--muted);}
+  .seats-caption b{color:var(--txt);font-weight:600;}
+  .deadline{
+    margin-top:6px;font-size:13px;font-weight:500;
+    background:linear-gradient(92deg,#f7e7b4,#e6c15c 45%,#c99a2e);
+    -webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent;
+  }
+
+  .why{
+    margin-top:72px;padding-top:30px;border-top:1px solid var(--hairline);
+    font-size:16px;color:var(--muted);line-height:1.65;max-width:440px;
+    margin-left:auto;margin-right:auto;font-weight:400;
+  }
+  .why b{color:var(--txt);font-weight:500;}
+
+  .cta{margin-top:52px;}
+  .cta a.btn{
+    display:inline-block;text-decoration:none;background:var(--green);color:#fff;
+    font-size:17px;font-weight:500;padding:15px 40px;border-radius:980px;
+    transition:transform .25s var(--ease), filter .25s var(--ease);
+  }
+  .cta a.btn:hover{filter:brightness(1.1);transform:scale(1.03);}
+  .invite{margin-top:26px;}
+  .invite input{
+    background:rgba(255,255,255,.06);border:1px solid var(--hairline);border-radius:12px;
+    color:var(--txt);font-size:15px;padding:12px 18px;width:240px;text-align:center;
+    outline:none;font-family:inherit;letter-spacing:.15em;
+    transition:border-color .25s var(--ease);
+  }
+  .invite input:focus{border-color:var(--green);}
+  .invite .hint{font-size:12px;color:var(--muted);margin-top:10px;}
+
+  .quiet{margin-top:64px;font-size:14px;color:var(--muted);}
+  .quiet a{color:#2997ff;text-decoration:none;}
+  .quiet a:hover{text-decoration:underline;}
+
+  footer{margin-top:80px;font-size:11px;color:#5c5c60;line-height:1.7;max-width:460px;margin-left:auto;margin-right:auto;}
+</style>
+</head>
+<body>
+<div class="page">
+  <div class="wordmark fade d1">CXM</div>
+
+  <h1 class="fade d2">Twelve seats.<br><span class="gold">One country.</span></h1>
+  <p class="sub fade d3">CXM is appointing <b>12 Master IBs</b> for Indonesia — 60% of the Gold spread — <b>$14.40 on every lot</b> — unlimited sub-IB tiers, direct line to the country desk. By application only.</p>
+
+  <div class="seats fade d4" id="seats"></div>
+  <div class="seats-caption fade d4"><b id="left">5</b> of 12 seats remaining</div>
+  <div class="deadline fade d4">Applications close 31 August 2026</div>
+
+  <p class="why fade d5">
+    Why only twelve? Because a Master IB with a direct line to our country desk,
+    priority payouts and co-marketing budget isn't a mailing list — it's a partnership.
+    <b>We'd rather do twelve properly than a thousand poorly.</b>
+  </p>
+
+  <div class="cta fade d5">
+    <a class="btn" href="https://secure.cxm.com/guest/registration" target="_blank" rel="noopener">Apply for a seat</a>
+    <div class="invite">
+      <input type="text" placeholder="INVITE CODE" maxlength="8" aria-label="Invite code">
+      <div class="hint">Invited by a current Master IB? Your application is fast-tracked.</div>
+    </div>
+  </div>
+
+  <div class="quiet fade d6">
+    Wondering what a seat is worth? <a href="CXM_IB_v1_The_Number.html">Calculate your number ›</a>
+  </div>
+
+  <footer class="fade d6">
+    Master IB terms per individual agreement. 60% share of Gold spread revenue on the Standard account (24 pips: $0.24 × 100 oz = $24.00 per 1-lot round turn).
+    Best Gold Trading Broker 2026, iFX Expo Dubai. Trading CFDs involves significant risk of loss.
+  </footer>
+</div>
+
+<script>
+  const TAKEN = 7; // seats already filled — update as they fill
+  const grid = document.getElementById('seats');
+  for (let i = 0; i < 12; i++){
+    const d = document.createElement('div');
+    const taken = i < TAKEN;
+    d.className = 'seat ' + (taken ? 'taken' : 'open');
+    d.textContent = taken ? '✓' : (i + 1);
+    if (!taken) d.onclick = () => window.open('https://secure.cxm.com/guest/registration','_blank');
+    grid.appendChild(d);
+  }
+  document.getElementById('left').textContent = 12 - TAKEN;
+</script>
+</body>
+</html>

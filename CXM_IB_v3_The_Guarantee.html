@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>CXM — Switch Without Risk.</title>
+<meta property="og:title" content="If we don't beat your current broker, we pay the difference.">
+<meta property="og:description" content="The CXM Master IB switching guarantee on Gold.">
+<style>
+  :root{
+    --bg:#000; --txt:#f5f5f7; --muted:#86868b;
+    --hairline:rgba(255,255,255,.14); --green:#22ca46;
+    --gold-l:#f5cf6b; --gold:#d4a017;
+    --ease:cubic-bezier(.25,.1,.25,1);
+  }
+  *{box-sizing:border-box;margin:0;padding:0;}
+  body{
+    font-family:-apple-system,BlinkMacSystemFont,"SF Pro Display","Helvetica Neue",Helvetica,Arial,sans-serif;
+    background:var(--bg);color:var(--txt);min-height:100vh;
+    display:flex;align-items:center;justify-content:center;padding:60px 24px;
+    -webkit-font-smoothing:antialiased;
+  }
+  .page{width:100%;max-width:560px;text-align:center;}
+  .fade{opacity:0;transform:translateY(14px);animation:in 1s var(--ease) forwards;}
+  .d1{animation-delay:.05s}.d2{animation-delay:.18s}.d3{animation-delay:.32s}
+  .d4{animation-delay:.46s}.d5{animation-delay:.6s}.d6{animation-delay:.74s}
+  @keyframes in{to{opacity:1;transform:none;}}
+
+  .wordmark{font-size:13px;font-weight:600;letter-spacing:.22em;color:var(--muted);margin-bottom:52px;}
+
+  .seal{
+    width:104px;height:104px;margin:0 auto 38px;border-radius:50%;position:relative;
+    background:radial-gradient(circle at 34% 28%,#f7e7b4,#d9a93c 55%,#8f6a14);
+    box-shadow:0 14px 44px rgba(212,160,23,.35), inset 0 2px 6px rgba(255,255,255,.5);
+    display:flex;align-items:center;justify-content:center;
+  }
+  .seal::before{
+    content:"";position:absolute;inset:7px;border-radius:50%;
+    border:1.5px dashed rgba(60,40,0,.4);
+  }
+  .seal svg{width:44px;height:44px;fill:none;stroke:#3a2a00;stroke-width:3;stroke-linecap:round;stroke-linejoin:round;}
+  .seal svg path{stroke-dasharray:40;stroke-dashoffset:40;animation:tick 1s .9s var(--ease) forwards;}
+  @keyframes tick{to{stroke-dashoffset:0;}}
+
+  h1{font-size:clamp(38px,7vw,54px);font-weight:700;letter-spacing:-.015em;line-height:1.1;}
+  h1 .gold{
+    background:linear-gradient(92deg,#f7e7b4,#e6c15c 45%,#c99a2e);
+    -webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent;
+  }
+  .promise{
+    font-size:21px;color:var(--txt);line-height:1.5;margin:26px auto 0;max-width:460px;font-weight:400;
+  }
+  .promise b{font-weight:600;
+    background:linear-gradient(92deg,#f7e7b4,#e6c15c 45%,#c99a2e);
+    -webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent;
+  }
+  .promise-sub{font-size:15px;color:var(--muted);margin-top:14px;font-weight:400;}
+
+  .steps{
+    margin:76px auto 0;max-width:430px;text-align:left;
+  }
+  .step{
+    display:flex;gap:20px;align-items:flex-start;padding:22px 0;
+    border-top:1px solid var(--hairline);
+  }
+  .step:last-child{border-bottom:1px solid var(--hairline);}
+  .step .n{
+    flex:0 0 34px;height:34px;border-radius:50%;border:1px solid rgba(245,207,107,.5);
+    color:var(--gold-l);font-size:14px;font-weight:600;
+    display:flex;align-items:center;justify-content:center;margin-top:2px;
+  }
+  .step h3{font-size:16px;font-weight:600;letter-spacing:-.01em;}
+  .step p{font-size:14px;color:var(--muted);line-height:1.55;margin-top:5px;font-weight:400;}
+  .step p b{color:var(--txt);font-weight:500;}
+
+  .math{
+    margin-top:56px;font-size:14px;color:var(--muted);
+    display:flex;justify-content:center;gap:12px;flex-wrap:wrap;
+  }
+  .math span b{color:var(--txt);font-weight:600;}
+  .math .dot{color:rgba(255,255,255,.25);}
+
+  .cta{margin-top:52px;}
+  .cta a.btn{
+    display:inline-block;text-decoration:none;background:var(--green);color:#fff;
+    font-size:17px;font-weight:500;padding:15px 40px;border-radius:980px;
+    transition:transform .25s var(--ease), filter .25s var(--ease);
+  }
+  .cta a.btn:hover{filter:brightness(1.1);transform:scale(1.03);}
+  .cta .sub{margin-top:14px;font-size:13px;color:var(--muted);}
+
+  .quiet{margin-top:56px;font-size:14px;color:var(--muted);}
+  .quiet a{color:#2997ff;text-decoration:none;}
+  .quiet a:hover{text-decoration:underline;}
+
+  footer{margin-top:80px;font-size:11px;color:#5c5c60;line-height:1.7;max-width:470px;margin-left:auto;margin-right:auto;}
+</style>
+</head>
+<body>
+<div class="page">
+  <div class="wordmark fade d1">CXM</div>
+
+  <div class="seal fade d2">
+    <svg viewBox="0 0 24 24"><path d="M4 12.5l5 5L20 6.5"/></svg>
+  </div>
+
+  <h1 class="fade d2">Switch without <span class="gold">risk.</span></h1>
+
+  <p class="promise fade d3">Move your clients to CXM. If your first month's Gold rebate doesn't beat your current broker's, <b>we pay you the difference.</b></p>
+  <p class="promise-sub fade d3">Your community trusted you once. We make sure they're right twice.</p>
+
+  <div class="steps fade d4">
+    <div class="step">
+      <div class="n">1</div>
+      <div>
+        <h3>Bring five clients</h3>
+        <p>Open your Master IB account and move five active Gold traders. Migration takes a day — we handle the paperwork.</p>
+      </div>
+    </div>
+    <div class="step">
+      <div class="n">2</div>
+      <div>
+        <h3>Trade one month</h3>
+        <p>Your clients trade Gold on award-winning terms. You collect <b>60% of the 24-pip spread — $14.40 per lot, instantly</b>.</p>
+      </div>
+    </div>
+    <div class="step">
+      <div class="n">3</div>
+      <div>
+        <h3>Compare. We settle up.</h3>
+        <p>Show us your last rebate statement. If we didn't beat it, <b>we credit the shortfall</b> — and you can walk away. No hold-times, no lock-in.</p>
+      </div>
+    </div>
+  </div>
+
+  <div class="math fade d5">
+    <span><b>$14.40</b> per lot</span><span class="dot">·</span>
+    <span><b>$0.24</b> spread</span><span class="dot">·</span>
+    <span><b>60%</b> share</span><span class="dot">·</span>
+    <span><b>Instant</b> payout</span>
+  </div>
+
+  <div class="cta fade d5">
+    <a class="btn" href="https://secure.cxm.com/guest/registration" target="_blank" rel="noopener">Take the guarantee</a>
+    <div class="sub">Five clients. One month. Nothing to lose.</div>
+  </div>
+
+  <div class="quiet fade d6">
+    Curious what 60% of the spread means for you? <a href="CXM_IB_v1_The_Number.html">Calculate your number ›</a>
+  </div>
+
+  <footer class="fade d6">
+    Guarantee subject to Master IB agreement terms: minimum five migrated active clients, comparable Gold volume,
+    verified prior-broker rebate statement. 60% share of Gold spread revenue on the Standard account (24 pips: $0.24 × 100 oz = $24.00 per 1-lot round turn).
+    Best Gold Trading Broker 2026, iFX Expo Dubai. Trading CFDs involves significant risk of loss.
+  </footer>
+</div>
+</body>
+</html>

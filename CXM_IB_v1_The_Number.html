@@ -1,0 +1,419 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>CXM — Gold. Rewarded.</title>
+<meta property="og:title" content="Gold. Rewarded. — CXM Master IB">
+<meta property="og:description" content="Keep 60% of the Gold spread. Slide to see your number.">
+<style>
+  :root{
+    --bg:#000; --txt:#f5f5f7; --muted:#86868b;
+    --hairline:rgba(255,255,255,.14); --green:#22ca46;
+    --ease:cubic-bezier(.25,.1,.25,1);
+  }
+  *{box-sizing:border-box;margin:0;padding:0;}
+  body{
+    font-family:-apple-system,BlinkMacSystemFont,"SF Pro Display","Helvetica Neue",Helvetica,Arial,sans-serif;
+    background:var(--bg);color:var(--txt);min-height:100vh;
+    display:flex;align-items:center;justify-content:center;padding:52px 24px;
+    -webkit-font-smoothing:antialiased;overflow-x:hidden;
+  }
+  .page{width:100%;max-width:600px;text-align:center;}
+  .fade{opacity:0;transform:translateY(14px);animation:in 1s var(--ease) forwards;}
+  .d1{animation-delay:.05s}.d2{animation-delay:.18s}.d3{animation-delay:.32s}
+  .d4{animation-delay:.46s}.d5{animation-delay:.6s}.d6{animation-delay:.74s}
+  @keyframes in{to{opacity:1;transform:none;}}
+
+  .wordmark{font-size:13px;font-weight:600;letter-spacing:.22em;color:var(--muted);margin-bottom:34px;}
+  h1{font-size:clamp(34px,6vw,46px);font-weight:700;letter-spacing:-.015em;line-height:1.05;}
+  h1 .gold{
+    background:linear-gradient(92deg,#f7e7b4,#e6c15c 45%,#c99a2e);
+    -webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent;
+  }
+
+  #stack{display:block;width:100%;height:340px;margin-top:6px;}
+
+  .money{
+    font-size:clamp(58px,11vw,92px);font-weight:600;letter-spacing:-.03em;line-height:1;
+    font-variant-numeric:tabular-nums;margin-top:-6px;
+  }
+  .cadence{font-size:15px;color:var(--muted);margin-top:10px;}
+  .cadence b{color:var(--txt);font-weight:500;}
+  .milestone{
+    font-size:15px;margin-top:8px;min-height:22px;font-weight:500;
+    background:linear-gradient(92deg,#f7e7b4,#e6c15c 45%,#c99a2e);
+    -webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent;
+  }
+
+  .control{margin-top:44px;}
+  .lots-line{display:flex;justify-content:space-between;align-items:baseline;font-size:14px;color:var(--muted);margin-bottom:16px;}
+  .lots-line .val{font-size:17px;color:var(--txt);font-weight:600;font-variant-numeric:tabular-nums;}
+  input[type=range]{
+    -webkit-appearance:none;appearance:none;width:100%;height:4px;border-radius:4px;
+    background:linear-gradient(90deg,var(--txt) var(--fill,10%),rgba(255,255,255,.18) var(--fill,10%));
+    outline:none;cursor:pointer;
+  }
+  input[type=range]::-webkit-slider-thumb{
+    -webkit-appearance:none;width:28px;height:28px;border-radius:50%;background:#fff;
+    box-shadow:0 1px 4px rgba(0,0,0,.5),0 6px 16px rgba(0,0,0,.35);transition:transform .2s var(--ease);
+  }
+  input[type=range]::-webkit-slider-thumb:active{transform:scale(1.08);}
+  input[type=range]::-moz-range-thumb{
+    width:28px;height:28px;border-radius:50%;background:#fff;border:none;
+    box-shadow:0 1px 4px rgba(0,0,0,.5),0 6px 16px rgba(0,0,0,.35);
+  }
+
+  .specs{
+    margin-top:52px;padding-top:24px;border-top:1px solid var(--hairline);
+    display:flex;justify-content:center;gap:12px;flex-wrap:wrap;font-size:14px;color:var(--muted);
+  }
+  .specs span b{color:var(--txt);font-weight:600;}
+  .specs .dot{color:rgba(255,255,255,.25);}
+
+  .cta{margin-top:44px;}
+  .cta a.btn{
+    display:inline-block;text-decoration:none;background:var(--green);color:#fff;
+    font-size:17px;font-weight:500;padding:14px 34px;border-radius:980px;
+    transition:transform .25s var(--ease), filter .25s var(--ease);
+  }
+  .cta a.btn:hover{filter:brightness(1.1);transform:scale(1.03);}
+
+  .share{margin-top:40px;padding-top:24px;border-top:1px solid var(--hairline);}
+  .share .row{display:flex;justify-content:center;gap:12px;flex-wrap:wrap;}
+  .sbtn{
+    display:inline-flex;align-items:center;gap:8px;cursor:pointer;text-decoration:none;
+    background:rgba(255,255,255,.08);color:var(--txt);font-size:14px;font-weight:500;
+    padding:10px 20px;border-radius:980px;border:none;font-family:inherit;
+    transition:background .2s var(--ease), transform .2s var(--ease);
+  }
+  .sbtn:hover{background:rgba(255,255,255,.16);transform:scale(1.04);}
+  .sbtn svg{width:16px;height:16px;fill:currentColor;}
+  .toast{
+    position:fixed;left:50%;bottom:34px;transform:translateX(-50%) translateY(80px);
+    background:rgba(40,40,42,.95);color:var(--txt);font-size:14px;padding:12px 22px;
+    border-radius:980px;transition:transform .35s var(--ease);pointer-events:none;
+    box-shadow:0 10px 30px rgba(0,0,0,.5);
+  }
+  .toast.on{transform:translateX(-50%) translateY(0);}
+  footer{margin-top:64px;font-size:11px;color:#5c5c60;line-height:1.7;max-width:460px;margin-left:auto;margin-right:auto;}
+</style>
+</head>
+<body>
+<div class="page">
+  <div class="wordmark fade d1">CXM</div>
+  <h1 class="fade d2"><span class="gold">Gold.</span> Rewarded.</h1>
+
+  <canvas id="stack" class="fade d3"></canvas>
+
+  <div class="fade d3">
+    <div class="money" id="usd">$7,200</div>
+    <div class="cadence"><b id="yearly">$86,400</b> a year · your monthly rebate</div>
+    <div class="milestone" id="milestone"></div>
+  </div>
+
+  <div class="control fade d4">
+    <div class="lots-line">
+      <span>Client volume in Gold</span>
+      <span class="val"><span id="lotsVal">500</span> lots / month</span>
+    </div>
+    <input type="range" id="lots" min="10" max="5000" step="10" value="500" oninput="calc()" aria-label="Monthly gold volume in lots">
+  </div>
+
+  <div class="specs fade d5">
+    <span><b>$14.40</b> per lot</span><span class="dot">·</span>
+    <span><b>$0.24</b> spread</span><span class="dot">·</span>
+    <span><b>60%</b> share</span><span class="dot">·</span>
+    <span><b>Instant</b> payout</span>
+  </div>
+
+  <div class="cta fade d5">
+    <a class="btn" href="https://secure.cxm.com/guest/registration" target="_blank" rel="noopener">Become a Master IB</a>
+  </div>
+
+  <div class="share fade d6">
+    <div class="row">
+      <a class="sbtn" id="waBtn" target="_blank" rel="noopener">
+        <svg viewBox="0 0 24 24"><path d="M12 2a10 10 0 0 0-8.6 15.1L2 22l5.1-1.3A10 10 0 1 0 12 2zm5.5 14.1c-.2.7-1.3 1.3-1.9 1.4-.5.1-1.1.1-1.8-.1-.4-.1-1-.3-1.7-.6-3-1.3-4.9-4.3-5.1-4.5-.1-.2-1.2-1.6-1.2-3s.7-2.1 1-2.4c.2-.3.5-.3.7-.3h.5c.2 0 .4 0 .6.5l.8 2c.1.2.1.4 0 .6l-.4.6-.5.5c-.2.2-.3.4-.1.7.2.3.8 1.3 1.7 2.1 1.2 1.1 2.2 1.4 2.5 1.5.3.1.5.1.7-.1l1-1.1c.2-.3.4-.2.7-.1l1.9.9c.3.1.5.2.6.4 0 .1 0 .5-.2 1z"/></svg>
+        WhatsApp
+      </a>
+      <a class="sbtn" id="tgBtn" target="_blank" rel="noopener">
+        <svg viewBox="0 0 24 24"><path d="M9.9 16.9l-.4 3.6c.6 0 .8-.2 1.1-.5l2.6-2.5 5.4 3.9c1 .5 1.7.3 2-.9l3.5-16.5c.3-1.5-.5-2.1-1.5-1.7L1.4 9.6C0 10.2 0 11 1.2 11.4l5.3 1.6L18.7 5.3c.6-.4 1.1-.2.7.2L9.9 16.9z"/></svg>
+        Telegram
+      </a>
+      <button class="sbtn" id="copyBtn">
+        <svg viewBox="0 0 24 24"><path d="M16 1H4a2 2 0 0 0-2 2v14h2V3h12V1zm3 4H8a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h11a2 2 0 0 0 2-2V7a2 2 0 0 0-2-2zm0 16H8V7h11v14z"/></svg>
+        Copy message
+      </button>
+      <button class="sbtn" id="cardBtn">
+        <svg viewBox="0 0 24 24"><path d="M19 12v7H5v-7H3v7a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7h-2zm-6 .67 2.59-2.58L17 11.5l-5 5-5-5 1.41-1.41L11 12.67V3h2v9.67z"/></svg>
+        Save my card
+      </button>
+    </div>
+  </div>
+
+  <footer class="fade d6">
+    Estimate based on 60% of spread revenue: $0.24 × 100 oz = $24.00 per 1-lot round turn (Standard account, Gold spreads from 24 pips).
+    Final terms per your CXM Master IB agreement. Best Gold Trading Broker 2026, iFX Expo Dubai.
+    Trading CFDs involves significant risk of loss.
+  </footer>
+</div>
+
+<div class="toast" id="toast">Copied</div>
+
+<script>
+/* ============ core ============ */
+const RATE = 0.24 * 100 * 0.60;   // $14.40/lot (Standard account, 24-pip spread)
+const LINK = 'https://www.cxm.com/en/partnerships/introducing-brokers/';
+let shown = 7200, raf = null;
+const fmt = n => n.toLocaleString('en-US',{maximumFractionDigits:0});
+const MILESTONES = [
+  [600000,'A Bali villa. Every year.'],
+  [300000,'Toyota Alphard territory. Every year.'],
+  [120000,'A new Fortuner. Every year.'],
+  [50000, 'An iPhone Pro. Every week.'],
+  [12000, 'Serious side income.'],
+  [0,'']
+];
+const milestone = y => { for (const [t,s] of MILESTONES) if (y>=t) return s; return ''; };
+const shareText = () => {
+  const lots = +document.getElementById('lots').value;
+  return `${fmt(lots)} lots of Gold a month = $${fmt(lots*RATE)}/month as a CXM Master IB. 60% of the Gold spread, paid instantly. Check your number: ${LINK}`;
+};
+function calc(){
+  const s = document.getElementById('lots');
+  const lots = +s.value;
+  s.style.setProperty('--fill', ((lots - s.min)/(s.max - s.min)*100)+'%');
+  document.getElementById('lotsVal').textContent = fmt(lots);
+  const yearly = lots*RATE*12;
+  document.getElementById('yearly').textContent = '$'+fmt(yearly);
+  document.getElementById('milestone').textContent = milestone(yearly);
+  document.getElementById('waBtn').href = 'https://wa.me/?text='+encodeURIComponent(shareText());
+  document.getElementById('tgBtn').href = 'https://t.me/share/url?url='+encodeURIComponent(LINK)+'&text='+encodeURIComponent(shareText());
+  spring(lots*RATE);
+  Stack.setTarget(lots);
+}
+function spring(target){
+  cancelAnimationFrame(raf);
+  const el = document.getElementById('usd');
+  const from = shown, start = performance.now(), dur = 420;
+  const tick = now => {
+    const p = Math.min(1,(now-start)/dur), e = 1-Math.pow(1-p,3);
+    shown = from+(target-from)*e;
+    el.textContent = '$'+fmt(shown);
+    if (p<1) raf = requestAnimationFrame(tick); else shown = target;
+  };
+  raf = requestAnimationFrame(tick);
+}
+function toast(msg){
+  const t = document.getElementById('toast');
+  t.textContent = msg; t.classList.add('on');
+  setTimeout(()=>t.classList.remove('on'),1800);
+}
+document.getElementById('copyBtn').onclick = async () => {
+  try{ await navigator.clipboard.writeText(shareText()); toast('Message copied — paste it anywhere'); }
+  catch(e){ toast('Copy failed'); }
+};
+
+/* ============ the gold stack ============ */
+const Stack = (() => {
+  const cv = document.getElementById('stack');
+  const ctx = cv.getContext('2d');
+  let W = 0, H = 0, DPR = 1;
+  const MAXROW = 7;                       // bottom row bars
+  const MAXBARS = MAXROW*(MAXROW+1)/2;    // 28
+  let bars = [];                          // {born, dying, dieAt}
+  let target = 0;
+  let sparkles = [], lastSpark = 0;
+  let sheenT = -.4;
+
+  function resize(){
+    DPR = Math.min(2, window.devicePixelRatio||1);
+    W = cv.clientWidth; H = cv.clientHeight;
+    cv.width = W*DPR; cv.height = H*DPR;
+    ctx.setTransform(DPR,0,0,DPR,0,0);
+  }
+  window.addEventListener('resize', resize); resize();
+
+  const layout = () => {
+    const bw = Math.min(86, (W-40)/MAXROW);
+    return { bw, bh: bw*0.34, top: bw*0.16, baseY: H-34 };
+  };
+  function pos(i){                       // i-th bar → row/col, bottom row first
+    let row = 0, left = i;
+    for (let r = MAXROW; r >= 1; r--){
+      if (left < r) return { row: MAXROW-r, col: left, rowLen: r };
+      left -= r;
+    }
+    return { row: 0, col: 0, rowLen: MAXROW };
+  }
+  const easeBack = p => { const c = 1.70158; return 1 + (c+1)*Math.pow(p-1,3) + c*Math.pow(p-1,2); };
+
+  function drawBar(x, y, bw, bh, glossX){
+    const inset = bw*0.10, topH = bh*0.42;
+    // front face
+    const f = ctx.createLinearGradient(x, y-bh, x, y);
+    f.addColorStop(0,'#f4d878'); f.addColorStop(.45,'#d9a93c'); f.addColorStop(1,'#8f6a14');
+    ctx.beginPath();
+    ctx.moveTo(x+inset, y-bh); ctx.lineTo(x+bw-inset, y-bh);
+    ctx.lineTo(x+bw-2, y); ctx.lineTo(x+2, y); ctx.closePath();
+    ctx.fillStyle = f; ctx.fill();
+    // moving sheen across front
+    ctx.save(); ctx.clip();
+    const g = ctx.createLinearGradient(glossX-60, 0, glossX+60, 0);
+    g.addColorStop(0,'rgba(255,255,255,0)'); g.addColorStop(.5,'rgba(255,255,240,.38)'); g.addColorStop(1,'rgba(255,255,255,0)');
+    ctx.fillStyle = g; ctx.fillRect(x, y-bh, bw, bh);
+    ctx.restore();
+    // top face
+    const t = ctx.createLinearGradient(x, y-bh-topH, x, y-bh);
+    t.addColorStop(0,'#fff3c2'); t.addColorStop(1,'#e9c25c');
+    ctx.beginPath();
+    ctx.moveTo(x+inset*2.2, y-bh-topH); ctx.lineTo(x+bw-inset*2.2, y-bh-topH);
+    ctx.lineTo(x+bw-inset, y-bh); ctx.lineTo(x+inset, y-bh); ctx.closePath();
+    ctx.fillStyle = t; ctx.fill();
+    // edge line
+    ctx.strokeStyle = 'rgba(60,40,0,.35)'; ctx.lineWidth = 1;
+    ctx.strokeRect(x+2, y-bh, bw-4, bh);
+  }
+
+  function render(now){
+    ctx.clearRect(0,0,W,H);
+    const { bw, bh, baseY } = layout();
+    const alive = bars.filter(b => !b.dying || now < b.dieAt);
+    bars = alive;
+
+    // under-glow scales with stack size
+    const n = bars.length;
+    if (n){
+      const glow = ctx.createRadialGradient(W/2, baseY+6, 10, W/2, baseY+6, W*0.45);
+      glow.addColorStop(0, `rgba(212,160,23,${0.10+0.12*n/MAXBARS})`);
+      glow.addColorStop(1, 'rgba(212,160,23,0)');
+      ctx.fillStyle = glow;
+      ctx.fillRect(0, baseY-30, W, 70);
+    }
+
+    // sheen sweep position (loops every 4.2s)
+    sheenT += 0.0042; if (sheenT > 1.4) sheenT = -0.4;
+    const glossX = W*sheenT;
+
+    bars.forEach((b, i) => {
+      const p = Math.min(1, (now - b.born)/460);
+      const e = easeBack(p);
+      const { row, col, rowLen } = pos(i);
+      const rowW = rowLen*bw;
+      const x = W/2 - rowW/2 + col*bw;
+      const yFinal = baseY - row*bh;
+      const y = yFinal - (1-e)*120;
+      let alpha = p < .15 ? p/.15 : 1;
+      if (b.dying) alpha *= Math.max(0, (b.dieAt-now)/180);
+      ctx.globalAlpha = alpha;
+      drawBar(x, y, bw-3, bh-2, glossX);
+      ctx.globalAlpha = 1;
+    });
+
+    // sparkles
+    if (now - lastSpark > 620 && n > 0){
+      lastSpark = now;
+      const i = Math.floor(Math.random()*n);
+      const { row, col, rowLen } = pos(i);
+      const rowW = rowLen*bw;
+      sparkles.push({
+        x: W/2 - rowW/2 + col*bw + Math.random()*bw,
+        y: baseY - row*bh - bh + Math.random()*6,
+        born: now
+      });
+    }
+    sparkles = sparkles.filter(s => now - s.born < 900);
+    for (const s of sparkles){
+      const p = (performance.now()-s.born)/900;
+      const r = 7*Math.sin(Math.PI*p);
+      ctx.save();
+      ctx.translate(s.x, s.y);
+      ctx.globalAlpha = Math.sin(Math.PI*p);
+      ctx.fillStyle = '#fff8dc';
+      ctx.beginPath();
+      for (let k = 0; k < 4; k++){
+        ctx.moveTo(0,0);
+        ctx.lineTo(r*Math.cos(k*Math.PI/2)*.25 - r*Math.sin(k*Math.PI/2)*.02, r*Math.sin(k*Math.PI/2)*.25);
+        ctx.lineTo(r*Math.cos(k*Math.PI/2), r*Math.sin(k*Math.PI/2));
+        ctx.lineTo(r*Math.cos(k*Math.PI/2)*.25 + r*Math.sin(k*Math.PI/2)*.02, r*Math.sin(k*Math.PI/2)*.25);
+      }
+      ctx.fill();
+      ctx.restore();
+    }
+    requestAnimationFrame(render);
+  }
+
+  let queue = null;
+  function setTarget(lots){
+    const want = Math.max(1, Math.round(lots/5000*MAXBARS));
+    target = Math.min(MAXBARS, want);
+    clearTimeout(queue);
+    step();
+  }
+  function step(){
+    const now = performance.now();
+    const liveCount = bars.filter(b => !b.dying).length;
+    if (liveCount < target){
+      bars.push({ born: now, dying: false, dieAt: 0 });
+      queue = setTimeout(step, 55);              // cascade drops
+    } else if (liveCount > target){
+      for (let i = bars.length-1; i >= 0; i--){
+        if (!bars[i].dying){ bars[i].dying = true; bars[i].dieAt = now+180; break; }
+      }
+      queue = setTimeout(step, 40);
+    }
+  }
+  requestAnimationFrame(render);
+  return { setTarget };
+})();
+
+/* ============ share card ============ */
+document.getElementById('cardBtn').onclick = () => {
+  const lots = +document.getElementById('lots').value;
+  const c = document.createElement('canvas'); c.width = 1080; c.height = 1350;
+  const x = c.getContext('2d');
+  x.fillStyle = '#000'; x.fillRect(0,0,1080,1350);
+  x.textAlign = 'center';
+  const F = w => `${w} -apple-system,BlinkMacSystemFont,'Helvetica Neue',Arial,sans-serif`;
+  x.fillStyle = '#86868b'; x.font = F('600 34px'); x.fillText('C X M', 540, 140);
+  const g = x.createLinearGradient(300,0,780,0);
+  g.addColorStop(0,'#f7e7b4'); g.addColorStop(.5,'#e6c15c'); g.addColorStop(1,'#c99a2e');
+  x.fillStyle = g; x.font = F('700 92px'); x.fillText('Gold. Rewarded.', 540, 280);
+  // mini gold stack
+  const bw = 120, bh = 40, rows = [5,4,3], baseY = 620;
+  rows.forEach((len, r) => {
+    for (let i = 0; i < len; i++){
+      const bx = 540 - len*bw/2 + i*bw, by = baseY - r*bh;
+      const f = x.createLinearGradient(bx, by-bh, bx, by);
+      f.addColorStop(0,'#f4d878'); f.addColorStop(.5,'#d9a93c'); f.addColorStop(1,'#8f6a14');
+      x.fillStyle = f;
+      x.beginPath();
+      x.moveTo(bx+12, by-bh); x.lineTo(bx+bw-14, by-bh); x.lineTo(bx+bw-4, by); x.lineTo(bx+2, by);
+      x.closePath(); x.fill();
+      x.fillStyle = '#fff3c2';
+      x.beginPath();
+      x.moveTo(bx+26, by-bh-16); x.lineTo(bx+bw-28, by-bh-16); x.lineTo(bx+bw-14, by-bh); x.lineTo(bx+12, by-bh);
+      x.closePath(); x.fill();
+    }
+  });
+  x.fillStyle = '#86868b'; x.font = F('500 34px'); x.fillText('My monthly Master IB rebate', 540, 740);
+  x.fillStyle = '#f5f5f7'; x.font = F('600 160px'); x.fillText('$'+fmt(lots*RATE), 540, 910);
+  x.fillStyle = '#86868b'; x.font = F('400 38px');
+  x.fillText('$'+fmt(lots*RATE*12)+' a year · '+fmt(lots)+' lots/month', 540, 985);
+  const ms = milestone(lots*RATE*12);
+  if (ms){ x.fillStyle = '#e6c15c'; x.font = F('500 42px'); x.fillText(ms, 540, 1060); }
+  x.fillStyle = '#22ca46'; x.beginPath(); x.roundRect(330,1120,420,90,45); x.fill();
+  x.fillStyle = '#fff'; x.font = F('600 38px'); x.fillText('cxm.com', 540, 1180);
+  x.fillStyle = '#5c5c60'; x.font = F('400 26px');
+  x.fillText('$14.40/lot · 24-pip spread · 60% share · Best Gold Broker 2026', 540, 1290);
+  const a = document.createElement('a');
+  a.download = 'CXM-Gold-IB-'+fmt(lots*RATE).replace(/,/g,'')+'usd.png';
+  a.href = c.toDataURL('image/png'); a.click();
+  toast('Card saved — share it anywhere');
+};
+
+calc();
+</script>
+</body>
+</html>
