@@ -16,7 +16,8 @@
     -webkit-font-smoothing:antialiased;display:flex;align-items:center;justify-content:center;padding:36px 18px;}
   .wrap{width:100%;max-width:940px;}
   .top{text-align:center;margin-bottom:24px;}
-  .wm{font-size:12px;letter-spacing:.24em;color:var(--muted);font-weight:600;}
+  .wm{font-size:12px;letter-spacing:.14em;color:var(--muted);font-weight:600;text-transform:uppercase;}
+  .wm b{color:var(--gold-l);font-weight:700;}
   h1{font-size:clamp(28px,4.4vw,40px);font-weight:700;letter-spacing:-.02em;margin-top:12px;}
   h1 .g{background:linear-gradient(92deg,var(--gold-l),var(--gold) 55%,#c99a2e);-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent;}
   .top p{color:var(--muted);margin-top:9px;font-size:15px;}
@@ -79,8 +80,8 @@
 <body>
 <div class="wrap">
   <div class="top">
-    <div class="wm">C X M · MASTER IB</div>
-    <h1>Your <span class="g">Gold</span> desk, live.</h1>
+    <div class="wm" id="eyebrow">CXM · Master IB Program</div>
+    <h1 id="headline">Your <span class="g">Gold</span> desk, live.</h1>
     <p>Set your clients' volume — watch the rebate land in real time.</p>
   </div>
 
@@ -92,7 +93,7 @@
         <span class="t">rebate-calculator</span>
       </div>
       <div class="cbody">
-        <div class="k">Projected monthly rebate</div>
+        <div class="k" id="rebLbl">Projected monthly rebate</div>
         <div class="money" id="usd">$7,200</div>
         <div class="yr"><b id="yr">$86,400</b> a year</div>
         <div class="sw">
@@ -133,6 +134,19 @@
 const RATE=0.24*100*0.60;
 const fmt=(n,d=0)=>n.toLocaleString('en-US',{minimumFractionDigits:d,maximumFractionDigits:d});
 let monthlyLots=500,shownMoney=7200,rafMoney=null,accrued=0,tradeCount=0;
+
+/* ---- personalisation via ?NAME= ---- */
+(function personalise(){
+  const raw=new URLSearchParams(location.search).get('NAME')||new URLSearchParams(location.search).get('name')||'';
+  // allow letters (incl. accented), spaces, apostrophe, hyphen, period; cap length
+  let nm=raw.replace(/[^\p{L} .'-]/gu,'').trim().slice(0,40);
+  if(!nm)return;
+  const first=nm.split(/\s+/)[0].replace(/^\p{L}/u,c=>c.toUpperCase());
+  document.getElementById('eyebrow').innerHTML='Prepared for <b>'+first+'</b> · CXM Master IB';
+  document.getElementById('headline').innerHTML=first+', your <span class="g">Gold</span> desk.';
+  document.getElementById('rebLbl').textContent=first+"'s projected monthly rebate";
+  document.title='CXM Master IB — '+first;
+})();
 
 function springMoney(t){cancelAnimationFrame(rafMoney);const el=document.getElementById('usd'),from=shownMoney,s=performance.now();
   const tick=n=>{const p=Math.min(1,(n-s)/420),e=1-Math.pow(1-p,3);shownMoney=from+(t-from)*e;el.textContent='$'+fmt(shownMoney);if(p<1)rafMoney=requestAnimationFrame(tick);else shownMoney=t;};rafMoney=requestAnimationFrame(tick);}
