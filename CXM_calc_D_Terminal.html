@@ -95,7 +95,6 @@
         <div class="k">Projected monthly rebate</div>
         <div class="money" id="usd">$7,200</div>
         <div class="yr"><b id="yr">$86,400</b> a year</div>
-        <div class="ms" id="ms">// An iPhone Pro. Every week.</div>
         <div class="sw">
           <div class="cl"><span>CLIENT_VOLUME_GOLD</span><b><span id="lots">500</span> lots / month</b></div>
           <input type="range" id="range" min="10" max="5000" step="10" value="500" oninput="calc()">
@@ -133,8 +132,6 @@
 <script>
 const RATE=0.24*100*0.60;
 const fmt=(n,d=0)=>n.toLocaleString('en-US',{minimumFractionDigits:d,maximumFractionDigits:d});
-const MS=[[600000,'A Bali villa. Every year.'],[300000,'Toyota Alphard territory. Every year.'],[120000,'A new Fortuner. Every year.'],[50000,'An iPhone Pro. Every week.'],[12000,'Serious side income.'],[0,'']];
-const msFn=y=>{for(const[t,s]of MS)if(y>=t)return s;return'';};
 let monthlyLots=500,shownMoney=7200,rafMoney=null,accrued=0,tradeCount=0;
 
 function springMoney(t){cancelAnimationFrame(rafMoney);const el=document.getElementById('usd'),from=shownMoney,s=performance.now();
@@ -143,7 +140,7 @@ function calc(){const r=document.getElementById('range');monthlyLots=+r.value;
   r.style.setProperty('--fill',((monthlyLots-r.min)/(r.max-r.min)*100)+'%');
   document.getElementById('lots').textContent=fmt(monthlyLots);
   const mo=monthlyLots*RATE,yr=mo*12;document.getElementById('yr').textContent='$'+fmt(yr);
-  document.getElementById('ms').textContent='// '+msFn(yr);springMoney(mo);}
+  springMoney(mo);}
 
 /* real gold price */
 let curPx=null,openPx=null,priceReal=false;
